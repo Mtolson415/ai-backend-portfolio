@@ -4,6 +4,8 @@
 
 A self-hosted AI workspace design and working reference tools: permission-aware knowledge retrieval, scoped files and container boundaries, with a proposed Proxmox deployment architecture.
 
+**Project direction:** [Master goal](docs/MASTER-GOAL.md) defines the complete local-first agent engineering platform, deep-research phase and architecture deliverables. The existing demo is one small supporting component.
+
 **Current evidence:** 181 researched projects across 16 categories; a synthetic reference API; 27 passing containerized tests; 19 passing local runtime checks; zero known HIGH/CRITICAL findings in the final local image scans. Browser automation, local model integration, vector search and Proxmox deployment remain planned. See [verification evidence](docs/VERIFICATION.md) for the exact scope.
 
 ## What a reviewer can inspect

@@ -2,6 +2,12 @@
 
 This is a proposed sequence, not evidence of completed deployment.
 
+## Revised planning sequence
+
+The [master goal](MASTER-GOAL.md) is authoritative for scope. The next work is requirements/current-state assessment, deep research of proven upstream engineering loops, complete architecture and contracts, then a prioritized implementation plan. A separate integration-experiment phase is not required. Acceptance verification occurs during implementation.
+
+The stage table below is an earlier component-level backlog. It does not define the full agent platform or require more small pilots before the master architecture is delivered. Re-sequence these components under that architecture, including agent management, skills, hooks, MCP services and the complete engineering delivery loop.
+
 | Stage | Deliverable | Expected result | Evidence required |
 |---|---|---|---|
 | 0 | Source and architecture research | Reproducible candidate inventory | Dated metadata, official links, license caveats |
