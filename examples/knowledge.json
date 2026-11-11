@@ -1,0 +1,5 @@
+[
+  {"id":"alpha-recovery","project":"alpha","title":"Synthetic recovery runbook","text":"Project Alpha restores its synthetic database from a tested backup before rebuilding the search index.","source":"synthetic://alpha/runbook#recovery"},
+  {"id":"alpha-browser","project":"alpha","title":"Synthetic browser boundary","text":"Project Alpha browser jobs use a separate session and stage downloads before processing.","source":"synthetic://alpha/runbook#browser"},
+  {"id":"beta-private","project":"beta","title":"Synthetic restricted record","text":"Project Beta private recovery code is SYNTHETIC-BETA-CANARY. This is test data only.","source":"synthetic://beta/private#recovery"}
+]

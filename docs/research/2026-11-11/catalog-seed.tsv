@@ -1,0 +1,182 @@
+category	name	repository	form	priority	function	boundary
+Agent workspaces	OpenHands	OpenHands/OpenHands	Stack	Evaluate	Coding agent with managed execution workspaces	Controller is privileged infrastructure; isolate its worker host
+Agent workspaces	Agent Infra AIO Sandbox	agent-infra/sandbox	Container	Evaluate	Browser, shell, files and notebook environment exposed through APIs	All-in-one shared state enlarges compromise scope; disposable workers
+Agent workspaces	OpenSandbox	opensandbox-group/OpenSandbox	Platform	Evaluate	Lifecycle and execution APIs for agent sandboxes	Runtime controller needs infrastructure permissions; keep outside agent reach
+Agent workspaces	NVIDIA OpenShell	NVIDIA/OpenShell	Runtime	Evaluate	Agent runtime with filesystem and outbound network policy	Linux kernel and effective-policy requirements must be verified
+Agent workspaces	Hermes Agent	NousResearch/hermes-agent	Build	Evaluate	Persistent tool-using agent with skills and memory	Audit tools, messaging connectors and memory writes before enabling
+Agent workspaces	OpenClaw	openclaw/openclaw	Stack	Evaluate	Personal agent with tools and communication integrations	Broad account and execution access requires separate identities
+Agent workspaces	Sandbar	jdrolls/sandbar	Container	Experimental	Visible agent desktop with human takeover and API control	Emerging project; validate viewer authentication and session separation
+Agent workspaces	LibreChat	danny-avila/LibreChat	Stack	Alternative	Multi-provider chat and agent interface	Resource permissions must match downstream retrieval permissions
+Agent workspaces	Open WebUI	open-webui/open-webui	Container	Start	Private chat interface with knowledge and external tools	Avoid unreviewed in-process extensions and broad terminal access
+Agent workspaces	LobeChat	lobehub/lobe-chat	Stack	Alternative	Assistant interface and knowledge integrations	Check deployed edition, authentication and external-service dependencies
+Agent workspaces	AnythingLLM	Mintplex-Labs/anything-llm	Container	Alternative	Integrated document chat and agent workspace	Workspace separation needs end-to-end permission tests
+Agent workspaces	Dify	langgenius/dify	Stack	Alternative	Visual AI applications, workflows and retrieval	Plugin execution and provider credentials need separate controls
+Agent workspaces	Flowise	FlowiseAI/Flowise	Container	Avoid-new	Visual agent and retrieval workflow builder	Upstream repository is archived; not selected for a new foundation
+Agent workspaces	Langflow	langflow-ai/langflow	Container	Alternative	Visual orchestration of AI components	Treat workflow creation as privileged code configuration
+Orchestration	LangGraph	langchain-ai/langgraph	Library	Evaluate	Stateful agent workflows, checkpoints and human review	Framework is not a security boundary; package your own service
+Orchestration	Haystack	deepset-ai/haystack	Library	Evaluate	Explicit indexing, retrieval and agent pipelines	Connector identities and filtering belong in application design
+Orchestration	LlamaIndex	run-llama/llama_index	Library	Alternative	Document indexing and retrieval integrations	Audit each integration for cloud calls and permission handling
+Orchestration	Pydantic AI	pydantic/pydantic-ai	Library	Evaluate	Typed agent inputs, outputs and tool interfaces	Validation is not authorization or execution isolation
+Orchestration	Semantic Kernel	microsoft/semantic-kernel	Library	Alternative	Application-oriented agent and tool orchestration	Run approved plugins with least-privilege service identities
+Orchestration	AutoGen	microsoft/autogen	Library	Alternative	Agent coordination and tool-based applications	Check current maintenance direction before starting new work
+Orchestration	CrewAI	crewAIInc/crewAI	Library	Alternative	Role-oriented multi-agent workflows	Shared memory and tool permissions need explicit isolation
+Tool gateways	agentgateway	agentgateway/agentgateway	Container	Evaluate	Gateway for agent, model and MCP traffic	Verify enforcement per route and caller; no automatic trust in tools
+Tool gateways	Docker MCP Gateway	docker/mcp-gateway	Platform	Evaluate	Containerized MCP tool routing and discovery	Controller access to Docker belongs on dedicated worker infrastructure
+Tool gateways	ContextForge MCP Gateway	IBM/mcp-context-forge	Container	Alternative	Federated MCP gateway and management	Validate identity propagation, SSRF controls and administrative routes
+Tool gateways	FastMCP	PrefectHQ/fastmcp	Library	Start	Build narrow Python MCP tools for local services	Implement path checks, caller authorization and request limits
+Tool gateways	MCP reference servers	modelcontextprotocol/servers	Build	Reference	Reference filesystem and other tool implementations	Reference examples are not an audited production tool catalog
+Tool gateways	ToolHive	stacklok/toolhive	Platform	Evaluate	Manage and run MCP servers in controlled environments	Inspect runtime permissions and selected deployment backend
+Browsing and research	Playwright	microsoft/playwright	Build	Start	Deterministic browser automation and screenshots	Official test image alone is not hardened for arbitrary hostile sites
+Browsing and research	Browserless	browserless/browserless	Container	Evaluate	Remote browser automation service	Browser debugging endpoints are powerful; authenticate and isolate
+Browsing and research	Browser Use	browser-use/browser-use	Build	Evaluate	LLM-driven browser task execution	Separate browser accounts, downloads and outbound access
+Browsing and research	Skyvern	Skyvern-AI/skyvern	Stack	Evaluate	Vision-assisted browser workflows	Authenticated automation can change external accounts
+Browsing and research	Stagehand	browserbase/stagehand	Library	Alternative	Browser automation combining code and AI	Distinguish local browser support from hosted Browserbase services
+Browsing and research	Crawl4AI	unclecode/crawl4ai	Container	Evaluate	Web extraction and crawling for retrieval	Restrict destinations, redirects, file sizes and crawl budgets
+Browsing and research	Firecrawl	firecrawl/firecrawl	Stack	Alternative	Website crawling and structured extraction API	Self-hosted feature parity differs; bound crawling and outbound traffic
+Browsing and research	SearXNG	searxng/searxng	Container	Start	Self-hosted metasearch endpoint	Queries still reach configured upstream search engines
+Browsing and research	Karakeep	karakeep-app/karakeep	Stack	Evaluate	Saved links and research collection	Saved pages and AI enrichment can contain sensitive data
+Browsing and research	ArchiveBox	ArchiveBox/ArchiveBox	Container	Evaluate	Preserve captured web research	Downloaded content is untrusted and retention needs limits
+Browsing and research	Wallabag	wallabag/wallabag	Container	Alternative	Read-later article collection	Protect authenticated feeds and exported content
+Knowledge and RAG	RAGFlow	infiniflow/ragflow	Stack	Evaluate	Integrated document retrieval and agent platform	Check actual dependency footprint and access isolation
+Knowledge and RAG	Onyx	onyx-dot-app/onyx	Stack	Evaluate	Connected enterprise-style knowledge search	Connector ACL synchronization must be proven for each source
+Knowledge and RAG	Kotaemon	Cinnamon/kotaemon	Container	Alternative	Document question answering interface	Test citations and multi-user separation
+Knowledge and RAG	LightRAG	HKUDS/LightRAG	Container	Evaluate	Graph-assisted document retrieval	Configure authentication and protect compatibility endpoints
+Knowledge and RAG	Microsoft GraphRAG	microsoft/graphrag	Library	Experimental	Entity and community based graph retrieval	Indexing cost and inferred relationships need evaluation
+Knowledge and RAG	Graphiti	getzep/graphiti	Library	Evaluate	Temporal knowledge graph for changing facts	Entity provenance, deletion and date-sensitive access need design
+Knowledge and RAG	Mem0	mem0ai/mem0	Library	Evaluate	Persistent agent memory extraction and retrieval	Require consent, provenance and correction/deletion workflows
+Knowledge and RAG	Letta	letta-ai/letta	Container	Alternative	Stateful agents with persistent memory	Agent memory should not silently become authoritative evidence
+Knowledge and RAG	Khoj	khoj-ai/khoj	Stack	Alternative	Personal knowledge assistant and search	Check local-model paths and optional hosted dependencies
+Document ingestion	Docling Serve	docling-project/docling-serve	Container	Start	API for structured document conversion	Restrict input paths, parser resources and model downloads
+Document ingestion	Docling	docling-project/docling	Library	Reference	Document layout and conversion pipeline	Use through isolated workers; models have separate licenses
+Document ingestion	MarkItDown	microsoft/markitdown	Build	Evaluate	Convert office and other formats into Markdown	Optional plugins may contact external providers
+Document ingestion	Unstructured	Unstructured-IO/unstructured	Library	Alternative	Parse and partition heterogeneous documents	Distinguish library, API container and hosted service capabilities
+Document ingestion	Apache Tika	apache/tika	Container	Evaluate	Broad file-format text and metadata extraction	Untrusted parsers need time, memory and upload limits
+Document ingestion	Gotenberg	gotenberg/gotenberg	Container	Evaluate	HTML and office document conversion to PDF	Control browser fetches and arbitrary URL conversion
+Document ingestion	OCRmyPDF	ocrmypdf/OCRmyPDF	Build	Evaluate	Add OCR text layers to scanned PDFs	Untrusted PDFs belong in disposable conversion jobs
+Document ingestion	PaddleOCR	PaddlePaddle/PaddleOCR	Build	Evaluate	OCR and document understanding	Verify model licenses and CPU/GPU image compatibility
+Document ingestion	MinerU	opendatalab/MinerU	Build	Experimental	Document extraction and layout reconstruction	Model resources and licensing require separate review
+Document ingestion	Paperless-ngx	paperless-ngx/paperless-ngx	Stack	Start	Searchable archive for scanned and digital documents	Originals, OCR text and previews share sensitivity
+Databases and search	Supabase	supabase/supabase	Stack	Evaluate	Postgres, auth, storage and application APIs	Use official compose bundle; RLS and backups remain operator duties
+Databases and search	pgvector	pgvector/pgvector	Extension	Start	Vector similarity search inside PostgreSQL	Pin extension with database version; test filtered recall
+Databases and search	Qdrant	qdrant/qdrant	Container	Evaluate	Dedicated vector search and metadata filtering	Configure authentication; network isolation alone is insufficient
+Databases and search	Weaviate	weaviate/weaviate	Container	Alternative	Object and vector search platform	Explicit auth, module and model-provider configuration
+Databases and search	Milvus	milvus-io/milvus	Stack	Later	Vector retrieval for larger workloads	Additional services increase recovery and operations burden
+Databases and search	Chroma	chroma-core/chroma	Container	Alternative	Vector storage for experiments and applications	Validate deployed security model before multi-user use
+Databases and search	OpenSearch	opensearch-project/OpenSearch	Stack	Alternative	Text, vector and structured search	Heap sizing, plugins and security configuration require attention
+Databases and search	Meilisearch	meilisearch/meilisearch	Container	Alternative	Fast application search	Distinguish community and commercial features
+Databases and search	Typesense	typesense/typesense	Container	Alternative	Application search with filtering	Scope search and administrative API keys separately
+Databases and search	Vespa	vespa-engine/vespa	Stack	Later	Advanced retrieval and ranking applications	Powerful but operationally complex for a small personal corpus
+Databases and search	Neo4j	neo4j/neo4j	Container	Evaluate	Property graph storage and traversal	Community and Enterprise features and licenses differ
+Databases and search	Apache AGE	apache/age	Extension	Experimental	Graph querying inside PostgreSQL	Verify supported Postgres versions and image build compatibility
+Databases and search	FalkorDB	FalkorDB/FalkorDB	Container	Alternative	Graph database for relationship retrieval	Check licensing and backend support of chosen RAG framework
+Databases and search	DuckDB	duckdb/duckdb	Library	Start	Local analytical SQL over datasets	Run on authorized files with memory limits
+Model services	Ollama	ollama/ollama	Container	Start	Simple local model serving	Protect API and record model identifiers and licenses
+Model services	llama.cpp	ggml-org/llama.cpp	Build	Start	Portable quantized inference and compatible API	CPU/GPU builds differ; bound context and parallel requests
+Model services	vLLM	vllm-project/vllm	Container	Evaluate	Higher-throughput model inference	Verify accelerator, driver, model and image compatibility
+Model services	SGLang	sgl-project/sglang	Container	Evaluate	Optimized language and multimodal model serving	Hardware requirements and rapidly changing APIs need testing
+Model services	LocalAI	mudler/LocalAI	Container	Alternative	Local multi-backend inference APIs	Enable only needed backends and protect exposed API
+Model services	Xinference	xorbitsai/inference	Container	Alternative	Manage multiple inference model types	Model deployment privileges and resource quotas need control
+Model services	Text Embeddings Inference	huggingface/text-embeddings-inference	Container	Evaluate	Dedicated embedding and reranking service	Pin embedding model revision and resulting vector dimensions
+Model services	LiteLLM	BerriAI/litellm	Container	Evaluate	Model routing, credentials and usage gateway	Cloud fallback must not silently export private data
+Model services	ComfyUI	Comfy-Org/ComfyUI	Build	Evaluate	Image and multimodal generation workflows	Custom nodes execute code; separate image worker from knowledge services
+Model services	faster-whisper	SYSTRAN/faster-whisper	Library	Evaluate	Speech transcription engine	Wrap as a bounded worker; transcripts inherit audio sensitivity
+Model services	whisper.cpp	ggml-org/whisper.cpp	Build	Alternative	Portable local speech transcription	Test accuracy, timestamp handling and hardware build
+Model services	Kokoro FastAPI	remsky/Kokoro-FastAPI	Container	Experimental	Local text-to-speech API	Voice/model licenses and input retention need review
+Programs and desktops	Jupyter Docker Stacks	jupyter/docker-stacks	Container	Start	Notebook and data analysis environments	Token authentication; no unrelated host mounts
+Programs and desktops	code-server	coder/code-server	Container	Evaluate	Browser-accessible development editor	Terminal access is code execution; restrict project and network
+Programs and desktops	OpenVSCode Server	gitpod-io/openvscode-server	Container	Alternative	Web-based development workspace	Protect editor endpoint and extension installation
+Programs and desktops	Coder	coder/coder	Platform	Later	Provision managed developer workspaces	Provisioner has broad infrastructure access
+Programs and desktops	LinuxServer Webtop	linuxserver/docker-webtop	Container	Evaluate	Linux desktop applications in a browser	Desktop shares session secrets; isolate viewers and clipboard
+Programs and desktops	Apache Guacamole	apache/guacamole-client	Stack	Alternative	Browser access to remote desktop sessions	Remote desktop gateway is an administrator-sensitive service
+Programs and desktops	Stirling PDF	Stirling-Tools/Stirling-PDF	Container	Evaluate	Interactive PDF manipulation tools	Private documents and conversion endpoints need access control
+Programs and desktops	Pandoc	jgm/pandoc	Build	Start	Convert documents and produce reports	External filters execute code; use approved templates and filters
+Programs and desktops	Marimo	marimo-team/marimo	Build	Evaluate	Reactive notebooks and data applications	Separate public app view from execution/edit privileges
+Programs and desktops	D2	terrastruct/d2	Build	Evaluate	Generate architecture diagrams from text	Use job outputs; restrict external imports
+Knowledge sources	Obsidian LiveSync	vrtmrz/obsidian-livesync	Plugin	Alternative	Community sync integration for an Obsidian vault	Plugin is not a standalone container; backend and sync conflicts need testing
+Knowledge sources	CouchDB	apache/couchdb	Container	Alternative	Document database and potential sync backend	Do not expose permissive database access for sync convenience
+Knowledge sources	Syncthing	syncthing/syncthing	Container	Evaluate	Replicate selected source folders	Synchronization is not backup; validate deletion/conflict behavior
+Knowledge sources	Nextcloud Server	nextcloud/server	Stack	Alternative	Self-hosted files and collaboration	Connectors must preserve source sharing permissions
+Knowledge sources	BookStack	BookStackApp/BookStack	Stack	Evaluate	Structured documentation and runbooks	Validate API access against document permissions
+Knowledge sources	Wiki.js	requarks/wiki	Stack	Alternative	Private wiki and documentation	Check deployment channel and export/recovery support
+Knowledge sources	SilverBullet	silverbulletmd/silverbullet	Container	Evaluate	Markdown-oriented personal knowledge workspace	Plugins and scripts may extend permissions
+Knowledge sources	TriliumNext	TriliumNext/Trilium	Container	Alternative	Hierarchical personal knowledge collection	Verify export formats and server access model
+Knowledge sources	Forgejo	forgejo/forgejo	Stack	Evaluate	Private Git repositories, issues and project documentation	Repository hooks and runners need execution isolation
+Knowledge sources	Gitea	go-gitea/gitea	Container	Alternative	Private source hosting and project history	Protect SSH keys, hooks and actions runners
+Knowledge sources	FreshRSS	FreshRSS/FreshRSS	Container	Evaluate	RSS intake and research feeds	Limit feed fetch destinations and sensitive subscription URLs
+Knowledge sources	RSSHub	DIYgod/RSSHub	Container	Alternative	Generate feeds from supported sites	Upstream scraping and authenticated routes need review
+Knowledge sources	Calibre-Web	janeczku/calibre-web	Container	Alternative	Searchable ebook/reference library interface	Use lawfully held content and protect library write access
+Storage and exchange	Garage	deuxfleurs-org/garage	Container	Evaluate	Self-hosted S3-compatible object storage	Validate API compatibility, credentials and restore procedure
+Storage and exchange	SeaweedFS	seaweedfs/seaweedfs	Stack	Alternative	File and object storage services	Distribution adds complexity; test consistency requirements
+Storage and exchange	MinIO	minio/minio	Container	Avoid-new	S3-compatible object storage candidate	Upstream repository is archived; evaluate maintained alternatives
+Storage and exchange	Valkey	valkey-io/valkey	Container	Evaluate	Cache, coordination and job primitives	Internal access only; persistence and eviction must match usage
+Storage and exchange	RabbitMQ	rabbitmq/rabbitmq-server	Container	Alternative	Reliable worker message queues	Use per-service users, dead-letter queues and bounded retries
+Storage and exchange	NATS	nats-io/nats-server	Container	Alternative	Service messaging and event streams	Restrict subjects and administrative monitoring endpoints
+Automation	Temporal	temporalio/temporal	Stack	Evaluate	Durable long-running jobs and retries	Activities must be idempotent; cluster adds operational cost
+Automation	n8n	n8n-io/n8n	Container	Evaluate	Visual workflows and connectors	Fair-code terms; editors can run powerful workflows
+Automation	Windmill	windmill-labs/windmill	Stack	Alternative	Scripts, jobs and internal tools	Worker secrets and execution permissions require separation
+Automation	Kestra	kestra-io/kestra	Stack	Alternative	Declarative scheduled and event workflows	Workers and plugin execution need separate permissions
+Automation	Prefect	PrefectHQ/prefect	Stack	Alternative	Python data workflow orchestration	Restrict worker pools and API access
+Automation	Node-RED	node-red/node-red	Container	Alternative	Visual event-driven integrations	Editor and installed nodes are privileged
+Automation	Apache Airflow	apache/airflow	Stack	Later	Scheduled data engineering pipelines	Substantial footprint; DAG authors effectively execute code
+Evaluation and telemetry	Langfuse	langfuse/langfuse	Stack	Evaluate	Model traces, prompt management and evaluation	Traces may contain full private documents and credentials
+Evaluation and telemetry	Arize Phoenix	Arize-ai/phoenix	Container	Evaluate	AI tracing, evaluation and retrieval debugging	Review license and tracing/export defaults
+Evaluation and telemetry	MLflow	mlflow/mlflow	Container	Alternative	Track experiments, models and evaluation	Protect artifact store and execution/deployment features
+Evaluation and telemetry	Promptfoo	promptfoo/promptfoo	Build	Evaluate	Prompt, tool and adversarial regression evaluation	Synthetic test data first; scanner jobs need bounded network access
+Evaluation and telemetry	Ragas	explodinggradients/ragas	Library	Alternative	Retrieval and answer evaluation	Judge models can leak evaluation data to providers
+Evaluation and telemetry	DeepEval	confident-ai/deepeval	Library	Alternative	LLM application evaluation tests	Separate local tooling from optional hosted reporting
+Evaluation and telemetry	OpenTelemetry Collector	open-telemetry/opentelemetry-collector-contrib	Container	Evaluate	Receive, filter and route service telemetry	Redact content before export; restrict collector receivers
+Evaluation and telemetry	Prometheus	prometheus/prometheus	Container	Evaluate	Service metrics and alert inputs	Metrics endpoints can expose system details
+Evaluation and telemetry	Grafana	grafana/grafana	Container	Evaluate	Operational dashboards	Datasource credentials and dashboard sharing need restrictions
+Evaluation and telemetry	Loki	grafana/loki	Container	Alternative	Centralized service logs	Log access can reveal private content; define retention
+Evaluation and telemetry	Uptime Kuma	louislam/uptime-kuma	Container	Start	Simple endpoint health monitoring	Monitoring credentials and dashboard need protection
+Identity and perimeter	Caddy	caddyserver/caddy	Container	Start	HTTPS ingress and explicit routing	Protect admin API and handle certificate trust deliberately
+Identity and perimeter	Traefik	traefik/traefik	Container	Alternative	Dynamic service routing	Discovery providers may require privileged runtime access
+Identity and perimeter	Authentik	goauthentik/authentik	Stack	Evaluate	Central identity, SSO and MFA	Identity service compromise affects all connected applications
+Identity and perimeter	Authelia	authelia/authelia	Container	Alternative	Authentication gateway and identity services	Proxy headers and bypass routes need testing
+Identity and perimeter	Keycloak	keycloak/keycloak	Container	Alternative	Full identity and federation platform	More configuration and lifecycle work than simple personal login
+Identity and perimeter	Tailscale	tailscale/tailscale	Container	Start	Private network access	Hosted coordination by default; access policies remain necessary
+Identity and perimeter	Headscale	juanfont/headscale	Container	Alternative	Self-hosted Tailscale-compatible coordination	Client compatibility and control-plane availability need verification
+Identity and perimeter	WireGuard tools	WireGuard/wireguard-tools	Host	Alternative	Self-managed encrypted network tunnels	Kernel/network setup belongs to trusted administrators
+Identity and perimeter	Open Policy Agent	open-policy-agent/opa	Container	Evaluate	External policy decisions for tool and API requests	Policies need a trusted enforcement point to have effect
+Identity and perimeter	OpenFGA	openfga/openfga	Container	Evaluate	Relationship-based application authorization	Model document/project permissions and test changes
+Identity and perimeter	SpiceDB	authzed/spicedb	Container	Alternative	Relationship permissions service	Application must enforce decisions and handle consistency
+Identity and perimeter	Squid	squid-cache/squid	Container	Evaluate	Controlled outbound HTTP proxy	Also block direct egress, DNS rebinding and private destinations
+Identity and perimeter	Gitleaks	gitleaks/gitleaks	Build	Start	Detect secrets in repositories and outputs	Detection complements credential isolation; not complete prevention
+Isolation and supply chain	gVisor	google/gvisor	Runtime	Evaluate	Additional syscall isolation for containers	Host runtime component; test browser and workload compatibility
+Isolation and supply chain	Kata Containers	kata-containers/kata-containers	Runtime	Later	VM-backed isolation for container workloads	Inside Proxmox VMs nested virtualization and device support need validation
+Isolation and supply chain	Firecracker	firecracker-microvm/firecracker	Runtime	Later	MicroVM building block for stronger job boundaries	Needs KVM and a management layer; not a drop-in Compose service
+Isolation and supply chain	Podman	containers/podman	Host	Alternative	Rootless-capable OCI container management	Rootless reduces some risks but is not a separate-kernel boundary
+Isolation and supply chain	Trivy	aquasecurity/trivy	Build	Start	Image, dependency, secret and configuration inspection	Scan exact pinned artifacts and record accepted exceptions
+Isolation and supply chain	Syft	anchore/syft	Build	Evaluate	Generate software bills of materials	SBOM is inventory, not proof of security
+Isolation and supply chain	Grype	anchore/grype	Build	Alternative	Vulnerability inspection of artifacts and SBOMs	Findings depend on database freshness and package identification
+Isolation and supply chain	Cosign	sigstore/cosign	Build	Evaluate	Verify and sign artifact provenance	Verify expected issuer and identity, not just any signature
+Isolation and supply chain	SOPS	getsops/sops	Build	Start	Encrypt configuration secrets for version control	Keep decryption keys separate from repository and agent workspace
+Isolation and supply chain	OpenBao	openbao/openbao	Container	Evaluate	Secret storage and credentials service	Unseal, backup and disaster-recovery procedures are essential
+Isolation and supply chain	ClamAV	Cisco-Talos/clamav	Container	Evaluate	Inspect staged downloads and attachments	Malware scanning cannot prove a file safe
+Management and backup	Dockge	louislam/dockge	Container	Start	Manage Docker Compose stacks through a UI	Docker access grants host control; administrator-only service
+Management and backup	Portainer	portainer/portainer	Container	Alternative	Manage container environments	Edition differences and endpoint credentials need review
+Management and backup	Komodo	moghtech/komodo	Stack	Evaluate	Manage builds, deployment and multiple servers	Server agents hold powerful deployment permissions
+Management and backup	Homepage	gethomepage/homepage	Container	Evaluate	Private service directory and status portal	Use static links first; avoid mounting Docker socket directly
+Management and backup	Dozzle	amir20/dozzle	Container	Alternative	Container log viewing	Logs and runtime socket access are sensitive
+Management and backup	restic	restic/restic	Build	Start	Encrypted file and backup artifact protection	Use database-native consistent backups and off-host copies
+Management and backup	pgBackRest	pgbackrest/pgbackrest	Build	Evaluate	PostgreSQL backups and point-in-time recovery	Integrate WAL, storage, retention and restore tests explicitly
+Management and backup	Kopia	kopia/kopia	Container	Alternative	Encrypted snapshot backups	Verify restore keys, retention and repository access
+Management and backup	Renovate	renovatebot/renovate	Container	Evaluate	Propose reviewed dependency and image updates	Use narrow repository token; never auto-upgrade stateful services blindly
+Management and backup	Harbor	goharbor/harbor	Stack	Later	Private image registry and artifact management	Large supporting stack; protect signing and registry credentials
+Tool gateways	GitHub MCP Server	github/github-mcp-server	Container	Evaluate	Official repository, issue and code tools	Start with read-only toolsets and scoped repository access
+Tool gateways	Playwright MCP	microsoft/playwright-mcp	Container	Evaluate	Browser tools exposed through MCP	Use isolated browser profile; tool server is not a hardened browser boundary
+Tool gateways	Context7	upstash/context7	Build	Evaluate	Retrieve current library documentation on demand	Local MCP process can still depend on external hosted documentation
+Tool gateways	Qdrant MCP Server	qdrant/mcp-server-qdrant	Build	Alternative	Store and retrieve selected semantic knowledge	Scope collections and forbid cross-project recall
+Tool gateways	Terraform MCP Server	hashicorp/terraform-mcp-server	Container	Reference	Provider documentation and infrastructure tools	Separate documentation lookup from credentialed infrastructure actions
+Browsing and research	Perplexica	ItzCrazyKns/Perplexica	Stack	Evaluate	Self-hosted search and research assistant	Verify source citations, model calls and search-provider traffic
+Browsing and research	GPT Researcher	assafelovic/gpt-researcher	Stack	Evaluate	Multi-source research and report generation	Treat retrieved instructions as untrusted and bound research budgets
+Agent workspaces	DeerFlow	bytedance/deer-flow	Stack	Experimental	Research and agent execution workflows	Inspect version-specific sandbox and tool permissions
+Orchestration	Deep Agents	langchain-ai/deepagents	Library	Evaluate	Planning, filesystem and delegated agent workflows	Virtual filesystem abstraction is not OS isolation
+Databases and search	LanceDB	lancedb/lancedb	Library	Alternative	Embedded vector and multimodal retrieval	Separate open-source embedded engine from managed features
+Databases and search	sqlite-vec	asg017/sqlite-vec	Extension	Experimental	Vector search embedded in SQLite	Useful single-user option; verify extension and database access boundaries
+Programs and desktops	FFmpeg	FFmpeg/FFmpeg	Build	Evaluate	Audio and video processing jobs	Codecs have distinct build/license constraints and parsers handle untrusted media
+Programs and desktops	LibreOffice core	LibreOffice/core	Build	Reference	Headless office conversion or dedicated desktop application	Large untrusted-document attack surface; use isolated jobs
+Knowledge sources	Linkwarden	linkwarden/linkwarden	Stack	Alternative	Preserve and organize bookmarked web content	Browser captures and shared collections need permission control
+Isolation and supply chain	Falco	falcosecurity/falco	Host	Later	Runtime behavioral detection for Linux workloads	Requires privileged host visibility; detection does not enforce policy
+Management and backup	Dagu	dagu-org/dagu	Container	Alternative	Lightweight workflow and job scheduling	Command runners need scoped files, credentials and outbound access
+Isolation and supply chain	Docker Sandboxes	docker/sbx-releases	Runtime	Evaluate	MicroVM environments for coding agents	Validate current supported Linux platform, licensing and nested virtualization

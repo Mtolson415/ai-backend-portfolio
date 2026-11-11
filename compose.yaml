@@ -1,0 +1,51 @@
+services:
+  gateway:
+    build:
+      context: .
+      dockerfile: deploy/gateway.Dockerfile
+    image: ai-backend-gateway:local
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      tools:
+        condition: service_healthy
+    user: "10001:10001"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    pids_limit: 64
+    mem_limit: 128m
+    cpus: 0.5
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=8m,uid=10001,gid=10001
+      - /config:rw,noexec,nosuid,size=8m,uid=10001,gid=10001
+      - /data:rw,noexec,nosuid,size=8m,uid=10001,gid=10001
+    networks: [edge, tools_internal]
+  tools:
+    build:
+      context: .
+      target: runtime
+    image: ai-backend-reference:local
+    environment:
+      AI_ALPHA_TOKEN: ${AI_ALPHA_TOKEN:?Generate a distinct 32+ character token}
+      AI_BETA_TOKEN: ${AI_BETA_TOKEN:?Generate a distinct 32+ character token}
+    user: "10001:10001"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    pids_limit: 64
+    mem_limit: 256m
+    cpus: 1.0
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=16m,uid=10001,gid=10001
+    volumes:
+      - alpha_outputs:/data/workspaces/alpha/outputs
+      - beta_outputs:/data/workspaces/beta/outputs
+    networks: [tools_internal]
+networks:
+  edge:
+  tools_internal:
+    internal: true
+volumes:
+  alpha_outputs:
+  beta_outputs:

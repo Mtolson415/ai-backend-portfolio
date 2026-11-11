@@ -1,0 +1,19 @@
+{
+  "observed_at_utc": "2026-11-11T13:45:40.116664+00:00",
+  "scanner": "aquasec/trivy:0.76.2@sha256:8f6bb947dbc528902e11f2f5be52f7b519f6a39d5d148f41166f2040499768fb",
+  "reports": [
+    {
+      "image": "ai-backend-reference:local",
+      "artifact_id": "sha256:7591f0baa51b612e52bb4ffdf4848b5da1fd8acb37ecae5c792d4878192f9e46",
+      "high_critical_findings": [],
+      "finding_count": 0
+    },
+    {
+      "image": "ai-backend-gateway:local",
+      "artifact_id": "sha256:dd3c31362ae586ab774dd67b07ab81e2942271e5f268ae71780e70810ef8c130",
+      "high_critical_findings": [],
+      "finding_count": 0
+    }
+  ],
+  "limits": "Known HIGH/CRITICAL vulnerability scan of two local images at this observation time. Does not certify safety or cover source secrets, all severities, browser/model components or future updates."
+}

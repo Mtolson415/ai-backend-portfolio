@@ -1,0 +1,26 @@
+{
+  "observed_at_utc": "2026-11-11T13:45:58.718828+00:00",
+  "checks": {
+    "health": true,
+    "unauthenticated_denied": true,
+    "cited_authorized_retrieval": true,
+    "cross_project_denied": true,
+    "traversal_denied": true,
+    "write_output": true,
+    "read_output": true,
+    "nonroot": true,
+    "readonly_root": true,
+    "drop_all_capabilities": true,
+    "no_new_privileges": true,
+    "memory_limit": true,
+    "pid_limit": true,
+    "backend_not_published": true,
+    "loopback_gateway_binding": true,
+    "gateway_nonroot_readonly": true,
+    "internal_network_only": true,
+    "sample_direct_outbound_connection_denied": true,
+    "no_host_bind_mounts": true
+  },
+  "passed": true,
+  "limits": "Single-host synthetic demonstration. The outbound probe covers one IPv4 destination, not a complete egress bypass audit. No Proxmox deployment, browser execution, vector database or model integration is tested."
+}

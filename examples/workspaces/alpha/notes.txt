@@ -1,0 +1,1 @@
+Synthetic Project Alpha workspace. Source notes are read-only in the container.

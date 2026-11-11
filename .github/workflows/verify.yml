@@ -1,0 +1,38 @@
+name: Verify synthetic reference tools
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  container-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6 reference checked 2026-11-11
+      - name: Validate research catalog and documentation links
+        run: python3 tools/verify_catalog.py
+      - name: Review public content for sensitive patterns
+        run: python3 tools/review_public_content.py
+      - name: Check offline catalog filtering logic
+        run: node tools/verify_catalog_ui.cjs
+      - name: Build test environment
+        run: docker build --target test -t ai-backend-tests .
+      - name: Run permission and API tests with narrow container access
+        run: >-
+          docker run --rm --read-only --network none --cap-drop ALL
+          --security-opt no-new-privileges --pids-limit 64 --memory 256m
+          --tmpfs /tmp:rw,noexec,nosuid,size=64m,uid=10001,gid=10001
+          ai-backend-tests
+      - name: Build and start synthetic reference service
+        run: |
+          python3 tools/make_demo_env.py
+          docker compose -p ai-backend-portfolio-demo config --quiet
+          docker compose -p ai-backend-portfolio-demo up --build --wait --wait-timeout 90
+      - name: Verify actual runtime configuration and API behavior
+        run: python3 tools/smoke_runtime.py
+      - name: Inspect known HIGH and CRITICAL image vulnerabilities
+        run: python3 tools/scan_images.py
+      - name: Clean up synthetic service
+        if: always()
+        run: docker compose -p ai-backend-portfolio-demo down --volumes
