@@ -30,6 +30,7 @@ The existing 181-project catalog and synthetic reference API are inputs. They ar
 | Knowledge and memory | Obsidian/document retrieval, source citations, project decisions, code structure and dependency context, task state, temporal facts, provenance, permission propagation, correction and deletion |
 | Model routing | Local inference first; task/model matching; context budgets; fallback policy; cloud escalation within explicit provider, spend and data limits |
 | Engineering delivery | Requirements, architecture, frontend/backend/APIs/data/auth, implementation, code review, unit/integration/browser tests, security checks, artifacts, infrastructure as code, development deployment and production handoff |
+| Repository management | Local Git and GitHub Desktop plus GitHub.com public/private repositories; create/add/clone, repository registration, branch/worktree ownership, synchronization, issues, PRs, CI, merge, releases, recovery and controlled public promotion |
 | Governance | Human ownership, permission boundaries, production approval, secret handling, scoped external effects, emergency stop, credential revocation and recovery |
 | Evaluation and improvement | Task and agent results, retrieval/citation quality, costs, failures, regression suites and proposed skill/prompt/tool changes tested before controlled promotion |
 | Operations | Proxmox placement, container management, observability, resource allocation, image/version management, application-consistent backups, restore and portable rebuild |
@@ -44,6 +45,16 @@ Initial hooks must cover task admission, agent assignment, context assembly, mod
 MCP designs must cover scoped filesystem operations, Git/repository hosting, browser/search, current technical documentation, authorized SQL/data queries, vector/graph retrieval, code intelligence, CI/artifacts and approved cloud-development operations. Administrator functions such as Proxmox and Docker management stay on a separate control path; ordinary agents request bounded jobs instead of receiving general infrastructure credentials.
 
 A specialist agent, an MCP tool, a hook and a container are different abstractions. They need not each become a separate service. Deployment boundaries should follow security, lifecycle, resource and recovery needs. Each selected component must have an identified owner and an explicit contract.
+
+### Local and GitHub.com repository loops
+
+GitHub Desktop is the local human review and repository-management interface. Agents use scoped Git operations and GitHub APIs/MCP tools in isolated workspaces. Both must participate in the same recorded project lifecycle without concurrent ownership of the same checkout. Desktop is not assumed to run in the Linux server containers.
+
+Support public and private repositories independently and as explicitly paired projects. Track repository identity, local checkout/worktree, remote, visibility, branch, owning task/agent, allowed operations and current synchronization/CI state. Include local-only/offline work, creation or cloning, fetch/pull/reconciliation, commits, pushes, issues, pull requests, review, authorized merge, development deployment, release and recovery.
+
+Add `/repo-onboard`, `/repo-sync`, `/branch-workspace`, `/pr-review`, `/repo-recover` and `/public-promote` skills. Hooks must check remote identity and visibility before push, workspace ownership before edits, source freshness before merge, exact-commit CI before merge/deployment and content/history/artifact suitability before public promotion. Private-to-public promotion uses reviewed allowlisted exports or patches, never automatic whole-history mirroring. Visibility changes and publication require authorization applicable to the specific action.
+
+See [repository management loops](REPOSITORY-LOOPS.md) for the required contracts, handoffs and acceptance scenarios. These are architecture requirements, not claims of installed GitHub Desktop integration.
 
 ## Research method
 
@@ -80,6 +91,7 @@ The implemented platform must demonstrate the following on an explicitly scoped 
 - Enforce model/data/spend limits and demonstrate denied actions as well as successful ones.
 - Preserve useful project memory, citations, artifacts, costs, decisions and results with correction/deletion behavior.
 - Restore required state and publish a reproducible synthetic evidence package with honest limitations.
+- Demonstrate the local GitHub Desktop/Git/GitHub.com lifecycle for public and private repositories, including concurrent-user/agent handoff, synchronization conflict recovery, exact-commit PR/CI checks and a reviewed private-to-public promotion that excludes private history and operational artifacts.
 
 Architecture readiness is a separate milestone: every deliverable above must identify ownership, interfaces, failure behavior, decisions and unresolved dependencies. It must be sufficiently concrete to implement without redesigning the core agent-management and delivery loop.
 

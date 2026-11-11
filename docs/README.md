@@ -4,6 +4,8 @@ Read in this order:
 
 Start with the [master goal](MASTER-GOAL.md), which supersedes the earlier narrow platform scope and defines the architecture-first research brief.
 
+The [repository management loops](REPOSITORY-LOOPS.md) define local GitHub Desktop/Git and GitHub.com public/private workflows, skills, hooks and publication boundaries.
+
 1. [Research analysis](research/2026-11-11/ANALYSIS.md): what the platform should do, choices and alternatives.
 2. [Catalog](research/2026-11-11/CATALOG.md): service and tool candidates, source references, versions and licenses.
 3. [Proxmox architecture](PROXMOX-ARCHITECTURE.md): network, storage, process and administration boundaries.
